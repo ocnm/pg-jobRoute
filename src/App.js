@@ -31,8 +31,8 @@ const App = ({ state, updateState }) => {
       setShowLoader(true);
       setShowForm(false);
 
-      setResponse(JSON.parse(await OpenaiCall(state)));
-      // setResponse(openaiResponse);
+      // setResponse(JSON.parse(await OpenaiCall(state)));
+      setResponse(openaiResponse);
 
       setShowLoader(false);
     } else

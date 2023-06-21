@@ -1,0 +1,70 @@
+{
+    "occupationCodes": [
+        {
+            "nocCode": "4311",
+            "name": "Police officers (except commissioned)"
+        }
+    ],
+    "generalSkills": [
+        "Teamwork",
+        "Communication",
+        "Problem-solving",
+        "Decision-making",
+        "Interpersonal skills",
+        "Leadership",
+        "Organizational skills",
+        "Tactical and strategic planning",
+        "Physical fitness",
+        "Computer skills"
+    ],
+    "certifiedSkills": [
+        {
+            "name": "Firearms training",
+            "description": "Police officers must be certified in the use of firearms.",
+            "links": [
+                {
+                    "name": "Alberta Justice and Solicitor General",
+                    "link": "https://www.solgps.alberta.ca/programs_and_services/public_safety/police_services/firearms_training_and_qualification_program.aspx"
+                }
+            ]
+        }
+    ],
+    "salary": [
+        81400,
+        91700,
+        102000,
+        "CAD"
+    ],
+    "courses": [
+        {
+            "name": "Police Foundations",
+            "description": "Police Foundations is a one-year certificate program that provides students with the knowledge and skills necessary to pursue a career in law enforcement.",
+            "links": [
+                {
+                    "name": "Lambton College",
+                    "link": "https://www.lambtoncollege.ca/programs/police-foundations/"
+                }
+            ]
+        },
+        {
+            "name": "Police Studies",
+            "description": "Police Studies is a two-year diploma program that provides students with the knowledge and skills necessary to pursue a career in law enforcement.",
+            "links": [
+                {
+                    "name": "Lambton College",
+                    "link": "https://www.lambtoncollege.ca/programs/police-studies/"
+                }
+            ]
+        },
+        {
+            "name": "Law and Security Administration",
+            "description": "Law and Security Administration is a two-year diploma program that provides students with the knowledge and skills necessary to pursue a career in law enforcement.",
+            "links": [
+                {
+                    "name": "Lambton College",
+                    "link": "https://www.lambtoncollege.ca/programs/law-and-security-administration/"
+                }
+            ]
+        }
+    ]
+}

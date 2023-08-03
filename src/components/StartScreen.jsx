@@ -19,9 +19,18 @@ const StartScreen = ({
 
   const handleMock = () => {
     setMockBtn((prevMockBtn) => !prevMockBtn);
-    
+
     updateState(mockBtn ? { ...state, ...mockState } : initialState);
   };
+
+  const captcha = () => {
+    return (
+      <ReCAPTCHA
+        sitekey={process.env.REACT_APP_TEST_SITE_KEY}
+        onChange={() => setCaptcha(true)}
+      />
+    )
+  }
 
   return (
     <form onSubmit={handleSubmitBtn} className={s.mainTagStyle}>
@@ -82,10 +91,6 @@ const StartScreen = ({
           Submit
         </button>
       </div>
-      <ReCAPTCHA
-        sitekey={process.env.REACT_APP_TEST_SITE_KEY}
-        onChange={() => setCaptcha(true)}
-      />
     </form>
   )
 

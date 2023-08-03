@@ -1,74 +1,37 @@
 import { useState } from 'react';
 import OpenaiCall from './api/OpenapiCall';
-import { initialState } from './state/states';
-import StartScreen from './components/StartScreen';
-import LoaderScreen from './components/LoaderScreen';
-import ResultScreen from './components/ResultScreen';
 
-//testData
-import openaiResponse from './api/replyExample.json';
+const App = () => {
+  const [profession, setProfession] = useState();
+  const [skill, setSkill] = useState();
+  const [data, setData] = useState();
 
-const App = ({ state, updateState }) => {
-  const [response, setResponse] = useState();
-  const [captcha, setCaptcha] = useState(false);
-  const [showLoader, setShowLoader] = useState(false);
-  const [showForm, setShowForm] = useState(true);
-  const [mockBtn, setMockBtn] = useState(true);
-
-  const handleData = (event, prop) => {
-    updateState({ ...state, [prop]: event.target.value });
-  };
+  const handleChange = (e, setter) => {
+    setter(e.target.value);
+  }
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (
-      state.currentOcupation &&
-      state.place &&
-      state.skills &&
-      state.desiredOccupation &&
-      captcha
-    ) {
-      setShowLoader(true);
-      setShowForm(false);
-
-      // setResponse(JSON.parse(await OpenaiCall(state)));
-      setResponse(openaiResponse);
-
-      setShowLoader(false);
-    } else
-      alert(
-        "Please check the fields. Not all of them are filled in or captcha didn't passed",
-      );
+    setData(JSON.parse(await OpenaiCall({ p: profession, s: skill }, 1)));
   };
 
-  const handleReset = () => {
-    setCaptcha(false);
-    setResponse(null);
-    setShowForm(true);
-    updateState(initialState);
-    setMockBtn(true);
-  };
+  const handleNode = async (e, title) => {
+    setData(JSON.parse(await OpenaiCall(title, 2)));
+  }
 
+  const firstNode = (data) => data.map((point, i) => (
+    <div key={i} onClick={(e) => handleNode(e, point.title, i)}>
+      <span>{point.title}</span> - <span>{point.desc}</span>
+    </div>
+  ));
 
   return (
-    <div className='w-screen h-screen flex flex-col flex-wrap gap-4 justify-center items-center bg-gradient'>
-      {response && <ResultScreen handleReset={handleReset} response={response} />}
-
-      {showLoader && <LoaderScreen />}
-
-      {showForm && <StartScreen
-        initialState={initialState}
-        state={state}
-        updateState={updateState}
-        handleSubmit={handleSubmit}
-        handleData={handleData}
-        setResponse={setResponse}
-        setCaptcha={setCaptcha}
-        setShowForm={setShowForm}
-        mockBtn={mockBtn}
-        setMockBtn={setMockBtn}
-      />}
-
+    <div className='flex flex-col flex-wrap items-center justify-center w-screen h-screen gap-4 bg-gradient'>
+      <input onChange={(e) => handleChange(e, setProfession)} placeholder='type the profession' type="text"/>
+      <input onChange={(e) => handleChange(e, setSkill)} placeholder='type the skill' type="text" />
+      <button onClick={handleSubmit}>Generate</button>
+      <div>
+        {data && firstNode(data)}
+      </div>
     </div>
 
   );
